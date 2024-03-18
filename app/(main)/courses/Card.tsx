@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils";
-import { boolean } from "drizzle-orm/mysql-core";
 import { Check } from "lucide-react";
 import Image from "next/image";
 
