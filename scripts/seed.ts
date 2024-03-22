@@ -108,10 +108,10 @@ const main = async () => {
       {
         id: 2,
         challengeId: 1,
-        imageSrc: "./women.svg",
+        imageSrc: "./woman.svg",
         correct: false,
         text: "la mujer",
-        audioSrc: "/es_women.mp3",
+        audioSrc: "/es_woman.mp3",
       },
       {
         id: 3,
