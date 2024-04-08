@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Notebook } from "lucide-react";
 import Link from "next/link";
-import { lessons } from "./../../../db/schema";
 
 type Props = {
   title: string;

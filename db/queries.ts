@@ -1,6 +1,6 @@
 import { cache } from "react";
 import db from "./drizzle";
-import { auth, currentUser } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs";
 import {
   challengeProgress,
   courses,
@@ -26,7 +26,7 @@ export const getCourseById = cache(async (courseId: number) => {
 });
 
 export const getCourseProgress = cache(async () => {
-  const { userId } = auth();
+  const { userId } = await auth();
   const userProgress = await getUserProgress();
 
   if (!userId || !userProgress?.activeCourseId) {
@@ -66,7 +66,6 @@ export const getCourseProgress = cache(async () => {
         );
       });
     });
-
   return {
     activeLesson: firstUnCompletedLesson,
     activeLessonId: firstUnCompletedLesson?.id,
@@ -75,7 +74,7 @@ export const getCourseProgress = cache(async () => {
 
 // user progress API calls
 export const getUserProgress = cache(async () => {
-  const { userId } = auth();
+  const { userId } = await auth();
   if (!userId) {
     return null;
   }
@@ -91,7 +90,7 @@ export const getUserProgress = cache(async () => {
 
 // units API calls
 export const getUnits = cache(async () => {
-  const { userId } = auth();
+  const { userId } = await auth();
   const userProgress = await getUserProgress();
   if (!userId || !userProgress?.activeCourseId) {
     return [];
@@ -136,7 +135,7 @@ export const getUnits = cache(async () => {
 
 // Lessons API calls
 export const getLesson = cache(async (id?: number) => {
-  const { userId } = auth();
+  const { userId } = await auth();
   if (!userId) {
     return null;
   }
@@ -176,6 +175,7 @@ export const getLesson = cache(async (id?: number) => {
 
 export const getLessonPercentage = cache(async () => {
   const courseProgress = await getCourseProgress();
+
   if (!courseProgress?.activeLessonId) {
     return 0;
   }
@@ -187,6 +187,6 @@ export const getLessonPercentage = cache(async () => {
     (challenge) => challenge.completed
   );
   const percentage =
-    Math.round(completedChallenges.length / lesson.challenges.length) * 100;
+    Math.round((completedChallenges.length / lesson.challenges.length) * 100);
   return percentage;
 });
