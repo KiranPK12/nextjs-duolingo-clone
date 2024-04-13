@@ -27,8 +27,9 @@ const Card = ({
   status,
   onClick,
   type,
-}: Props) => {
-  const [audio, state, controls] = useAudio({
+}: Props) => {  
+  
+  const [audio, state, controls,ref] = useAudio({
     src: audioSrc || "",
   });
   const handleClick = useCallback(() => {

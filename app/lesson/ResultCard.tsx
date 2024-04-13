@@ -4,9 +4,10 @@ import React from "react";
 type Props = {
   variant: "points" | "hearts";
   value: number;
+  hasSubscription?: boolean;
 };
 
-const ResultCard = ({ value, variant }: Props) => {
+const ResultCard = ({ value, variant, hasSubscription }: Props) => {
   const imgSrc = variant === "points" ? "/points.svg" : "/heart.svg";
   return (
     <div
@@ -39,7 +40,7 @@ const ResultCard = ({ value, variant }: Props) => {
           height={30}
           width={30}
         />
-        {value}
+        {variant === "points" ? value : hasSubscription ? "Infinity": value}
       </div>
     </div>
   );

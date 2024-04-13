@@ -5,7 +5,6 @@ import { InfinityIcon } from "lucide-react";
 import { courses } from "@/db/schema";
 
 type Props = {
-  // TODO:replace with database types
   activeCourse: typeof courses.$inferSelect;
   hearts: number;
   points: number;
