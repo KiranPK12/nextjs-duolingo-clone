@@ -12,6 +12,8 @@ import {
 import { redirect } from "next/navigation";
 import { Unit } from "./unit";
 import { userSubscription } from "@/db/schema";
+import Promo from "@/components/promo";
+import Quests from "@/components/quests";
 
 const LearnPage = async () => {
   const userProgressData = getUserProgress();
@@ -48,6 +50,8 @@ const LearnPage = async () => {
           points={userProgress.points}
           hasActiveSubscription={!!userSubscription?.isActive}
         />
+        {!!!userSubscription?.isActive && <Promo />}
+        <Quests points={userProgress.points} />
       </StickyWrapper>
       <FeedWrapper>
         <Header title={userProgress.activeCourse.title} />

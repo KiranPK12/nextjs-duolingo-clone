@@ -1,15 +1,16 @@
 import FeedWrapper from "@/components/feed-wrapper";
+import Promo from "@/components/promo";
 import StickyWrapper from "@/components/stricky-wrapper";
+import { Progress } from "@/components/ui/progress";
 import { UserProgress } from "@/components/user-progress";
+import { quests } from "@/constants";
 import { getUserProgress, getUserSubscription } from "@/db/queries";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-import Items from "./items";
-import { headers } from "next/headers";
-import Quests from "@/components/quests";
-import Promo from "@/components/promo";
 
-const ShopPage = async () => {
+
+
+const QuestsPage = async () => {
   const userProgressdata = getUserProgress();
   const userSubscriptiondata = getUserSubscription();
   const [userProgress, userSubscription] = await Promise.all([
@@ -29,27 +30,45 @@ const ShopPage = async () => {
           points={userProgress.points}
           hasActiveSubscription={!!userSubscription?.isActive}
         />
-        {/* {!!!userSubscription?.isActive && <Promo />} */}
-        <Quests points={userProgress.points} />
+        {!!!userSubscription?.isActive && <Promo />}
       </StickyWrapper>
       <FeedWrapper>
         <div className="w-full flex flex-col items-center">
-          <Image src={"/shop.svg"} alt="shop" height={90} width={90} />
+          <Image src={"/quests.svg"} alt="quests" height={90} width={90} />
           <h1 className="text-center font-bold text-neutral-800 text-2xl my-6">
-            Shop
+            Quests
           </h1>
           <p className="text-muted-foreground text-center text-lg mb-6">
-            Spend your points on cool stuffs
+            Complete Quests by earning points
           </p>
-          <Items
-            hearts={userProgress.hearts}
-            points={userProgress.points}
-            hasActiveSubscription={!!userSubscription?.isActive}
-          />
+          <ul className="w-full space-y-4">
+            {quests.map((quest) => {
+              const progress = (userProgress.points / quest.value) * 100;
+              return (
+                <div
+                  className="flex items-center w-full p-2 gap-x-4 border-t-2"
+                  key={quest.value}
+                >
+                  <Image
+                    src={"/points.svg"}
+                    alt="points"
+                    width={60}
+                    height={60}
+                  />
+                  <div className="flex flex-col gap-y-2 w-full">
+                    <p className="text-neutral-700 text-lg font-bold">
+                      {quest.title}
+                    </p>
+                    <Progress value={progress} className="h-3" />
+                  </div>
+                </div>
+              );
+            })}
+          </ul>
         </div>
       </FeedWrapper>
     </div>
   );
 };
 
-export default ShopPage;
+export default QuestsPage;
