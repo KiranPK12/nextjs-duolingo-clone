@@ -38,8 +38,8 @@ const main = async () => {
       },
       {
         id: 4,
-        title: "Croatian",
-        imageSrc: "/hr.svg",
+        title: "Tamil",
+        imageSrc: "/in.svg",
       },
     ]);
 

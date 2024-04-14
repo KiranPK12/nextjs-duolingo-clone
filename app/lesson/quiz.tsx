@@ -173,8 +173,10 @@ const Quiz = ({
             }
             correctAudioControls.play();
             setStatus("correct");
+            onNext();
+            setStatus("none");
+            setSelectedOption(undefined);
             setPercentage((prev) => prev + 100 / challenges.length);
-            //
             if (initialPercentage === 100) {
               setHearts((prev) => Math.min(prev + 1, 5));
             }
@@ -195,7 +197,6 @@ const Quiz = ({
 
             incorrectAudioControls.play();
             setStatus("wrong");
-
             if (!response?.error) {
               setHearts((prev) => Math.max(prev - 1, 0));
             }
