@@ -12,6 +12,12 @@ import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import Promo from "@/components/promo";
 import Quests from "@/components/quests";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Leaderboards",
+  description: "Learn and Master Multiple languages",
+};
 
 const LeaderboardPage = async () => {
   const userProgressdata = getUserProgress();

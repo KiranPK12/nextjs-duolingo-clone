@@ -1,6 +1,12 @@
 import { getCourses, getUserProgress } from "@/db/queries";
 import React from "react";
 import List from "./List";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Choose and start Learning | MultiLingo",
+  description: "Learn and Master Multiple languages",
+};
 
 const CoursesPage = async () => {
   const coursesData = getCourses();

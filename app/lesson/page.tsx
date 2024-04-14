@@ -1,6 +1,12 @@
 import { getLesson, getUserProgress, getUserSubscription } from "@/db/queries";
 import { redirect } from "next/navigation";
 import Quiz from "./quiz";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Work your way through the lessons",
+  description: "Learn and Master Multiple languages",
+};
 
 const LessonPage = async () => {
   const lessonData = getLesson();

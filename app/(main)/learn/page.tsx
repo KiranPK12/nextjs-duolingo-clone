@@ -8,13 +8,17 @@ import {
   getUnits,
   getUserProgress,
   getUserSubscription,
-} from "@/db/queries";
+} from "@/db/queries"
 import { redirect } from "next/navigation";
 import { Unit } from "./unit";
-import { userSubscription } from "@/db/schema";
 import Promo from "@/components/promo";
 import Quests from "@/components/quests";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Learn the Language",
+  description: "Learn and Master Multiple languages",
+};
 const LearnPage = async () => {
   const userProgressData = getUserProgress();
   const unitsData = getUnits();
@@ -34,6 +38,7 @@ const LearnPage = async () => {
     lessonPercentageData,
     userSubscriptionData,
   ]);
+  
   if (!userProgress || !userProgress.activeCourse) {
     redirect("/courses");
   }

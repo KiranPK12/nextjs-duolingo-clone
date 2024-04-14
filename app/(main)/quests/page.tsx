@@ -5,10 +5,14 @@ import { Progress } from "@/components/ui/progress";
 import { UserProgress } from "@/components/user-progress";
 import { quests } from "@/constants";
 import { getUserProgress, getUserSubscription } from "@/db/queries";
+import { Metadata } from "next";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 
-
+export const metadata: Metadata = {
+  title: "Quests",
+  description: "Learn and Master Multiple languages",
+};
 
 const QuestsPage = async () => {
   const userProgressdata = getUserProgress();

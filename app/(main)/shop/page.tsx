@@ -5,9 +5,13 @@ import { getUserProgress, getUserSubscription } from "@/db/queries";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import Items from "./items";
-import { headers } from "next/headers";
 import Quests from "@/components/quests";
-import Promo from "@/components/promo";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Shop for Rewards | MultiLingo",
+  description: "Shop for rewards and hearts and accelerate your learning",
+};
 
 const ShopPage = async () => {
   const userProgressdata = getUserProgress();

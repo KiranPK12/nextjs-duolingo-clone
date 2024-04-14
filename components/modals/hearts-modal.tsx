@@ -22,7 +22,7 @@ export const HeartsModal = () => {
   }, []);
 
   const onClick = () => {
-    router.push("/shop");
+    router.push("/shop");    
     close();
   };
   if (!isclient) {
@@ -53,7 +53,7 @@ export const HeartsModal = () => {
               variant="primary"
               className="w-full"
               size={"lg"}
-              onClick={close}
+              onClick={onClick}
             >
               Get unlimited hearts
             </Button>
@@ -61,7 +61,7 @@ export const HeartsModal = () => {
               variant="primaryOutline"
               className="w-full"
               size={"lg"}
-              onClick={onClick}
+              onClick={close}
             >
               No Thanks
             </Button>
