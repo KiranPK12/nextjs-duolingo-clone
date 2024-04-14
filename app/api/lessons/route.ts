@@ -12,6 +12,7 @@ export const GET = async () => {
     return NextResponse.json(data);
 }
 
+// new commentt added 
 export const POST = async (req: Request) => {
     if (!isAdmin()) {
         return new NextResponse("Unauthorized", { status: 401 })
